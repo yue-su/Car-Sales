@@ -26,6 +26,15 @@ export default (state=initialState, action) => {
                 },
                 additionalPrice: state.additionalPrice + state.additionalFeatures[action.payload-1].price
             }
+        case 'DELETE':
+            return {
+                ...state,
+                car: {
+                    ...state.car,
+                    features: state.car.features.filter(item => item.id !== action.payload)
+                },
+                additionalPrice: state.additionalPrice - state.additionalFeatures[action.payload-1].price
+            }
         default:
             return state
     }
