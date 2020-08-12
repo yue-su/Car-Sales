@@ -1,18 +1,23 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deleteFeature} from '../actions/index'
 
 const AddedFeature = props => {
+
+  const dispatch = useDispatch()
+
   return (
     <li>
       {/* Add an onClick to run a function to remove a feature */}
       <button
-        onClick={()=>props.deleteFeature(props.feature.id)}
-        className="button">X</button>
+        onClick={() => dispatch(deleteFeature(props.feature.id))}
+        className="button">
+        X
+      </button>
       {props.feature.name}
     </li>
-  );
+  )
 };
 
 
-export default connect(null, {deleteFeature})(AddedFeature);
+export default AddedFeature;
